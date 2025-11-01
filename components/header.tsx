@@ -1,61 +1,75 @@
-"use client"
+import Image from "next/image"
 
 import { Phone, Calendar } from "lucide-react"
 import Link from "next/link"
 
 export function Header() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#f8f6f3] border-b border-[#e8e6e3]">
-      <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
-          {/* Left: Phone */}
-          <div className="flex items-center gap-2 text-sm text-[#2d2d2d]">
-            <Phone className="w-4 h-4 text-[#c9a961]" strokeWidth={1.5} />
-            <span className="font-normal">1 800 222 000</span>
+    // Updated background and border colors for a light, clean look
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#f8f6f3] border-b border-[#c9a961]/50"> 
+      <div className="px-10">
+        {/* Adjusted height for a more standard header size (e.g., h-20 or h-24) */}
+        <div className="flex items-center justify-between h-24"> 
+          
+          {/* Left: Phone Number Style Adjustments */}
+          <div className="flex items-center gap-2 text-base text-[#2d2d2d]"> 
+            {/* The icon color is the key gold/brown accent */}
+            <Phone className="w-4 h-4 text-[#c9a961]" strokeWidth={1.5} /> 
+            {/* Set to 'normal' but you could try 'medium' or 'semibold' for emphasis */}
+            <span className="font-normal tracking-wide">1 800 222 000</span>
           </div>
 
-          {/* Center: Navigation */}
-          <nav className="hidden lg:flex items-center gap-10">
-            <Link href="/" className="text-sm text-[#666] hover:text-[#c9a961] transition-colors font-normal">
+          {/* Center: Navigation - Adjusting spacing and font weight */}
+          {/* Changed gap-10 to gap-8 for a slightly tighter look and added font styles */}
+          <nav className="header-nav hidden lg:flex items-center gap-8"> 
+            
+            {/* Navigation Link Styles - Made text slightly darker and bolder */}
+            <Link href="/" className="text-sm text-[#333] hover:text-[#c9a961] transition-colors font-medium uppercase tracking-wide">
               Home
             </Link>
-            <Link href="/about" className="text-sm text-[#666] hover:text-[#c9a961] transition-colors font-normal">
+            <Link href="/about" className="text-sm text-[#333] hover:text-[#c9a961] transition-colors font-medium uppercase tracking-wide">
               About us
             </Link>
-            <Link href="/rooms" className="text-sm text-[#666] hover:text-[#c9a961] transition-colors font-normal">
+            <Link href="/rooms" className="text-sm text-[#333] hover:text-[#c9a961] transition-colors font-medium uppercase tracking-wide">
               Rooms
             </Link>
 
-            {/* Logo */}
-            <Link href="/" className="mx-6">
+            {/* Logo - Kept center position, adjusted margin */}
+            <Link href="/" className="logo-link mx-8">
               <div className="flex items-center gap-3">
-                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 2L8 16H28L18 2Z" stroke="#2d2d2d" strokeWidth="1.5" fill="none" />
-                  <path d="M8 16L2 26H14L8 16Z" stroke="#2d2d2d" strokeWidth="1.5" fill="none" />
-                  <path d="M28 16L22 26H34L28 16Z" stroke="#2d2d2d" strokeWidth="1.5" fill="none" />
-                  <path d="M18 26L12 34H24L18 26Z" stroke="#2d2d2d" strokeWidth="1.5" fill="none" />
-                </svg>
-                <span className="font-serif text-2xl font-semibold text-[#2d2d2d]">Resort</span>
+                <Image
+                  src="/demo-hotel-and-resort-logo.svg"
+                  alt="Resort Logo"
+                  width={284}
+                  height={108}
+                  className="object-contain"
+                  priority
+                />
               </div>
             </Link>
 
-            <Link href="/amenities" className="text-sm text-[#666] hover:text-[#c9a961] transition-colors font-normal">
+            {/* Navigation Link Styles continued */}
+            <Link href="/amenities" className="text-sm text-[#333] hover:text-[#c9a961] transition-colors font-medium uppercase tracking-wide">
               Amenities
             </Link>
-            <Link href="/bistro" className="text-sm text-[#666] hover:text-[#c9a961] transition-colors font-normal">
+            <Link href="/bistro" className="text-sm text-[#333] hover:text-[#c9a961] transition-colors font-medium uppercase tracking-wide">
               Bistro
             </Link>
-            <Link href="/contact" className="text-sm text-[#666] hover:text-[#c9a961] transition-colors font-normal">
+            <Link href="/contact" className="text-sm text-[#333] hover:text-[#c9a961] transition-colors font-medium uppercase tracking-wide">
               Contact
             </Link>
           </nav>
 
-          {/* Right: Book Button */}
-          <button className="flex items-center gap-2 text-sm text-[#666] hover:text-[#c9a961] transition-colors font-normal">
+          {/* Right: Book Button Style Adjustments */}
+          {/* Made button text darker, uppercase, and slightly bigger */}
+          <button className="header-cta flex items-center gap-2 text-sm text-[#333] hover:text-[#c9a961] transition-colors font-medium uppercase tracking-wide">
             <Calendar className="w-4 h-4 text-[#c9a961]" strokeWidth={1.5} />
             <span>Book your stay</span>
           </button>
         </div>
+        
+        {/* New Element: The thick brown border at the bottom */}
+        <div className="w-full h-[3px] bg-[#c9a961]"></div> 
       </div>
     </header>
   )

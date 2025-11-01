@@ -1,8 +1,28 @@
+'use client'
 import { Button } from "@/components/ui/button"
 import { Phone } from "lucide-react"
 import Image from "next/image"
+import { useState, useEffect, useRef } from 'react';
 
 export function AboutSection() {
+  const [scrollOffset, setScrollOffset] = useState(0);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const rect = parallaxRef.current.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const elementTop = rect.top + scrollTop;
+        const newScrollOffset = scrollTop - elementTop;
+        setScrollOffset(newScrollOffset * 0.2);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section className="py-24 bg-white relative">
       <div className="container mx-auto px-4">
@@ -10,7 +30,8 @@ export function AboutSection() {
           {/* Left Content */}
           <div className="space-y-6 max-w-xl">
             <p className="text-[#c9a961] text-sm font-medium">About resorts</p>
-            <h2 className="font-serif text-5xl md:text-6xl leading-tight text-balance text-[#2d2d2d]">
+            {/* THIS IS THE MODIFIED H2 ELEMENT */}
+            <h2 className="font-serif text-[#2d2d2d] text-[3.438rem] font-medium leading-[3.3rem] tracking-[-2px]">
               Relax at the luxury resorts around the entire world.
             </h2>
             <p className="text-[#8a8a8a] leading-relaxed text-base">
@@ -19,7 +40,7 @@ export function AboutSection() {
               hospitality.
             </p>
             <div className="flex flex-wrap gap-6 pt-4">
-              <Button size="lg" className="bg-[#2d2d2d] text-white hover:bg-[#2d2d2d]/90 px-8">
+              <Button size="lg" className="bg-[#2d2d2d] text-white hover:bg-[#2d2d2d]/0 px-5">
                 About resort
               </Button>
               <button className="flex items-center gap-2 text-[#2d2d2d] hover:text-[#c9a961] transition-colors">
@@ -31,18 +52,21 @@ export function AboutSection() {
 
           {/* Right Images - Overlapping Grid */}
           <div className="relative h-[600px]">
-            <div className="absolute top-0 left-0 bg-white shadow-lg p-6 z-20 w-[200px]">
-              <p className="text-[#8a8a8a] text-xs uppercase tracking-wider mb-1">STARTED IN</p>
-              <p className="font-serif text-6xl font-bold text-[#2d2d2d] leading-none">1998</p>
+            <div 
+              ref={parallaxRef} 
+              className="absolute top-0 left-24 p-6 z-20 w-[200px]"
+              style={{ transform: `translateY(${scrollOffset}px)` }}
+            >
+                <p className="font-Urbanist  Sans-serif font-bold text-black text-xs uppercase tracking-wider mb-1">STARTED IN</p>
+                                 <p className="font-[Urbanist,sans-serif] font-bold text-[4rem] leading-[4.5rem] text-8xl md:text-8xl lg:text-8xl leading-none">1995</p>            </div>
+
+            <div className="absolute top-5 right-0 w-[65%] h-[420px] overflow-hidden">
+              <Image src="/coconuts.webp" alt="Coconuts on tree" fill className="object-cover" />
             </div>
 
-            <div className="absolute top-0 right-0 w-[65%] h-[420px] overflow-hidden">
-              <Image src="/fresh-coconuts-on-tree.jpg" alt="Fresh coconuts on tree" fill className="object-cover" />
-            </div>
-
-            <div className="absolute bottom-0 left-0 w-[48%] h-[360px] overflow-hidden z-10">
+            <div className="absolute bottom-0 left-10 w-[48%] h-[360px] overflow-hidden z-10">
               <Image
-                src="/woman-in-sun-hat-at-luxury-resort.jpg"
+                src="/hatgirl.webp"
                 alt="Resort guest in sun hat"
                 fill
                 className="object-cover"

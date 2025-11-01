@@ -123,3 +123,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Header navigation custom styles (Urbanist) */
+.header-nav a,
+.header-nav button.header-cta {
+  font-family: var(--font-urbanist), Sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--e-global-color-secondary, #232323) !important;
+}
+
+/* Ensure buttons remain visually consistent */
+.header-nav button.header-cta {
+  background: transparent;
+  padding: 0;
+}
+
+/* Marquee typography: 1.75rem font-size, 2.6rem line-height, -0.5px letter-spacing */
+.marquee-text{
+  font-size: 1.75rem;
+  line-height: 2.6rem;
+  letter-spacing: -0.5px;
+}
+
+
+
+

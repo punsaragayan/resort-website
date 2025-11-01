@@ -57,7 +57,7 @@ export function Footer() {
             {instagramImages.map((image, index) => (
               <div key={index} className="relative aspect-square overflow-hidden rounded-lg">
                 <Image
-                  src={image.src || "/placeholder.svg"}
+                  src={image.src || "/demo-hotel-and-resort.jpg"}
                   alt={image.alt}
                   fill
                   className="object-cover hover:scale-110 transition-transform duration-300"
